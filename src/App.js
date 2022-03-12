@@ -17,6 +17,12 @@ function App() {
       console.log("Make sure you have MetaMask installed!");
       return;
     } else {
+      let chainId = await ethereum.request({ method: 'eth_chainId' });
+      console.log("Connected to chain " + chainId);
+      const mumbaiChainId = "0x13881";
+      if (chainId !== mumbaiChainId) {
+        alert("You are not connected to the Mumbai Test Network!");
+      }
       console.log("Wallet exists! We're ready to go!")
     }
 
