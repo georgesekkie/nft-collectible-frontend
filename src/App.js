@@ -3,7 +3,7 @@ import './App.css';
 import contract from './contracts/NFTCollectible.json';
 import { ethers } from 'ethers';
 
-const contractAddress = "0x7aDBc3497BE70a903c5b17BEf184782dD0A7eFAa";
+const contractAddress = "0x2CaA6CC25f010AD16689F33E5793e256BA60CA6D";
 const abi = contract.abi;
 
 function App() {
@@ -123,7 +123,7 @@ function App() {
         <p>
           OUR SMART CONTRACT ADDRESS: <br></br>
           <span>
-            <a class="contract-link" href='https://mumbai.polygonscan.com/address/${contractAddress}' target="_blank" rel="noreferrer">{contractAddress}</a> 
+            <a class="contract-link" href={`https://mumbai.polygonscan.com/address/${contractAddress}`} target="_blank" rel="noreferrer">{contractAddress}</a> 
           </span>
         </p>
       </footer>
