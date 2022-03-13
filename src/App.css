@@ -124,3 +124,7 @@ h1 {
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+.loading_content {
+  margin: 0 auto;
+}

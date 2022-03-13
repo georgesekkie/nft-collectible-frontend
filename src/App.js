@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactLoading from 'react-loading';
 import './App.css';
 import contract from './contracts/NFTCollectible.json';
 import { ethers } from 'ethers';
@@ -9,6 +10,7 @@ const abi = contract.abi;
 function App() {
 
   const [currentAccount, setCurrentAccount] = useState(null);
+  const [minting, setMinting] = useState(false);
 
   const checkWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -58,6 +60,7 @@ function App() {
       const { ethereum } = window;
 
       if (ethereum) {
+        setMinting(true)
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const nftContract = new ethers.Contract(contractAddress, abi, signer);
@@ -69,7 +72,7 @@ function App() {
         await nftTxn.wait();
 
         console.log(`Mined, see transaction: ${nftTxn.hash}`);
-
+        setMinting(false)
       } else {
         console.log("Ethereum object does not exist");
       }
@@ -95,6 +98,13 @@ function App() {
     )
   }
 
+  const LoadingIndicator = () => (
+    <div className="loading">
+      <p className="sub-text">We are minting, give us 15 seconds....</p>
+      <ReactLoading className="loading_content" type="spokes" color={'white'} height={200} width={200} />
+    </div>
+  );
+
 
 
   useEffect(() => {
@@ -103,27 +113,33 @@ function App() {
 
   return (
     <div className='main-app'>
-      <h1 class="heading gradient-text">
-        <div class="banner-img">
+      <h1 className="heading gradient-text">
+        <div className="banner-img">
           <a href="https://testnets.opensea.io/collection/rinkeby-squirrels" target="_blank" rel="noreferrer">Polygon NFT Squirrels</a>
         </div>
       </h1>
       <div>
-      <button class="os-button">
+      <button className="os-button">
         <a href="https://testnets.opensea.io/collection/rinkeby-squirrels" target="_blank" rel="noreferrer">View Collection on Opensea</a>
       </button>
       </div>
       <div>
-        <div class="banner-img">
+        <div className="banner-img">
           <img src="https://nft-collectible-demoo.vercel.app/static/media/rinkeby_squirrels.9fa7865532739418b97d.gif" alt="Polygon Squirrels"></img>
         </div>
-        {currentAccount ? mintNftButton() : connectWalletButton()}
+        {minting ?
+          (<LoadingIndicator />):
+          (currentAccount ?
+            (mintNftButton()) :
+            (connectWalletButton())
+          )
+        }
       </div>
-      <footer class="footer">
+      <footer className="footer">
         <p>
           OUR SMART CONTRACT ADDRESS: <br></br>
           <span>
-            <a class="contract-link" href={`https://mumbai.polygonscan.com/address/${contractAddress}`} target="_blank" rel="noreferrer">{contractAddress}</a> 
+            <a className="contract-link" href={`https://mumbai.polygonscan.com/address/${contractAddress}`} target="_blank" rel="noreferrer">{contractAddress}</a> 
           </span>
         </p>
       </footer>
