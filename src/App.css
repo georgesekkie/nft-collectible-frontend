@@ -37,9 +37,41 @@
   }
 } */
 
+body {
+  background-color: #040718;
+  color: #fff;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 10px auto 0;
+}
+
+.gradient-text {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(-70deg,#a2facf,#64acff);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
 .main-app {
   text-align: center;
   margin: 100px;
+}
+
+.banner-img {
+  margin-bottom: 16px;
+}
+
+.banner-img img {
+  max-height: 250px;
+  max-width: 100%;
 }
 
 .cta-button {
@@ -58,4 +90,37 @@
 
 .mint-nft-button {
   background: orange;
+}
+
+.os-button {
+  background-color: #1868b7;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  margin: 0px auto 36px;
+  padding: 10px 20px;
+}
+
+.os-button a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 25px;
+  display: block;
+}
+
+.footer p {
+  line-height: 27px;
+  text-align: center;
+}
+
+.footer span {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(
+-70deg,#f374ff,#ff9f64);
+  background-clip: text;
+  -webkit-background-clip: text;
 }

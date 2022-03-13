@@ -95,16 +95,38 @@ function App() {
     )
   }
 
+
+
   useEffect(() => {
     checkWalletIsConnected();
   }, [])
 
   return (
     <div className='main-app'>
-      <h1>Scrappy Squirrels Tutorial</h1>
+      <h1 class="heading gradient-text">
+        <div class="banner-img">
+          <a href="https://testnets.opensea.io/collection/rinkeby-squirrels" target="_blank" rel="noreferrer">Polygon NFT Squirrels</a>
+        </div>
+      </h1>
       <div>
+      <button class="os-button">
+        <a href="https://testnets.opensea.io/collection/rinkeby-squirrels" target="_blank" rel="noreferrer">View Collection on Opensea</a>
+      </button>
+      </div>
+      <div>
+        <div class="banner-img">
+          <img src="https://nft-collectible-demoo.vercel.app/static/media/rinkeby_squirrels.9fa7865532739418b97d.gif" alt="Polygon Squirrels"></img>
+        </div>
         {currentAccount ? mintNftButton() : connectWalletButton()}
       </div>
+      <footer class="footer">
+        <p>
+          OUR SMART CONTRACT ADDRESS: <br></br>
+          <span>
+            <a class="contract-link" href='https://mumbai.polygonscan.com/address/${contractAddress}' target="_blank" rel="noreferrer">{contractAddress}</a> 
+          </span>
+        </p>
+      </footer>
     </div>
   )
 }
